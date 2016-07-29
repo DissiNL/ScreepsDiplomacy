@@ -12,6 +12,10 @@ Allows you to implement and act according to the diplomacy rules set by the worl
  - Give players a Maximum bucket to work with (default is 1 CPU per player, see [Functions](#Functions)), every action can be configured to consume X CPU. Or use real-life CPU limits.
  - Track hostility of users (ranging from -10 to 10) based on their actions.
 
+
+*This module is **not** designed to do any actions on itself, a user script should always handle diplomacy actions. It's merely a communication tool*
+
+
 ### Version
 1.0.0
 
