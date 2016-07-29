@@ -1,16 +1,19 @@
-var diplomacy = {}
-
 /**
  * Example of export of custom diplomacy module
  */
-modules.exports = diplomacy;
 
-var diplomacyModule = undefined;
-diplomacy.init = function(theDiplomacyModule ){
-    diplomacyModule = theDiplomacyModule;
-    // TODO register custom functions here
-}
+let diplomacyModule = undefined;
 
-diplomacy.handleMessage = function(theCreep){
-    // TODO handle action
-}
+const diplomacy = {
+
+    init: function (theDiplomacyModule) {
+        diplomacyModule = theDiplomacyModule;
+        // TODO register custom functions here
+    },
+
+    handleMessage: function (theCreep) {
+        // TODO handle action
+    }
+};
+
+module.exports = diplomacy;
