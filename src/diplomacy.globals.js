@@ -1,1 +1,1 @@
-global.CONST_DIPLOMACY_MEMORY_ROOT = 'diplomacy';
+global.CONST_DIPLOMACY_MEMORY_ROOT = '__diplomacy__';

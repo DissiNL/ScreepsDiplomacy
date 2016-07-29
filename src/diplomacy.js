@@ -1,50 +1,43 @@
-require('diplomacy.globals');
-var diplomacy = {}
+require('./diplomacy.globals');
 
-/**
- * Main diplomacy module shared by all screepers.
- * Allows you to implement and act according to the diplomacy rules set by the worlds inhabitants.
- * This module will create, and manage, the following memory entry: Memory.diplomacy, this can be changed by calling diplomacy.setMemoryLocation('New name').
- * 
- */
-modules.exports = diplomacy;
+const theMemoryLocation = global.CONST_DIPLOMACY_MEMORY_ROOT;
 
-diplomacy.init = function() {
-    // TODO init
-}
+const diplomacy = {
 
-diplomacy.setMemoryLocation = function(theLocation) {
-    if (!Memory[theLocation]) {
-        Memory[theLocation] = {};
+    /**
+     * Main diplomacy module shared by all screepers.
+     * Allows you to implement and act according to the diplomacy rules set by the worlds inhabitants.
+     * This module will create, and manage, the following memory entry: Memory.diplomacy, this can be changed by calling diplomacy.setMemoryLocation('New name').
+     *
+     */
+    init: function () {
+        // TODO init
+    },
+
+    process: function (theCreep) {
+
+    },
+
+    setMaxCpuUsage: function (theUsername, theNewMaximumCpu) {
+
+    },
+
+    getMaxCpuUsage: function (theUsername, theNewMaximumCpu) {
+        return 0;
+    },
+
+    setDiplomacyScore: function (theUsername, theNewStatus) {
+        return 0;
+    },
+
+    hookFunction: function (theMethod, theFunction, theUsername) {
+
     }
-    global.CONST_DIPLOMACY_MEMORY_ROOT = theLocation;
-}
-
-diplomacy.process = function(theCreep) {
-
-}
-
-diplomacy.setMaxCpuUsage = function(theUsername, theNewMaximumCpu) {
-
-}
-
-diplomacy.setDiplomacyScore = function(theUsername, theNewStatus) {
-
-}
-
-diplomacy.getMaxCpuUsage = function(theUsername, theNewMaximumCpu) {
-    return 0;
-}
-
-diplomacy.setDiplomacyScore = function(theUsername, theNewStatus) {
-    return 0;
-}
-
-diplomacy.hookFunction = function(theMethod, theFunction, theUsername) {
-
-}
+};
 
 // TODO Add global actions register
 // Posibility to hook functions up
 // Processing of saying
 // Track CPU-sage per "tenant"
+
+module.exports = diplomacy;
