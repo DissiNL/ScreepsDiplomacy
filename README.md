@@ -19,7 +19,7 @@ Allows you to implement and act according to the diplomacy rules set by the worl
 ### Modifies following screeps data
 
 This module will create, and manage, the following memory entry:
- - `Memory.diplomacy`  
+ - `Memory.__diplomacy__`  
  - The [Creep](http://support.screeps.com/hc/en-us/articles/203013212-Creep).diplomacy will be added when a creep performed a diplomatic action
 
 
@@ -28,14 +28,12 @@ This module will create, and manage, the following memory entry:
 
 | Action | Function | Description|
 |---------------------|:----------------------------------------------|:---------------------------------------------------------------|
-| Change memory root  | `diplomacy.setMemoryLocation('newNameHere');` | Changes your memory root location of the diplomacy module |
-| User CPU management | `diplomacy.setMaxCpuUsage('theUsername', 1);` | Sets the maximum amount of CPU a user can use|
-| Change diplomacy state | `diplomacy.setDiplomacyScore('theUsername', CONST_DIPLOMACY_USER_RATING_*);` | Sets the diplomacy score of a player to friendly, based on one of the CONST_DIPLOMACY_USER_RATING_* constants |
+| User CPU management | `diplomacy.setMaxCpuUsage('theUsername', 1);` | Sets the maximum amount of CPU a user can useMy Account| Change diplomacy state | `diplomacy.setDiplomacyScore('theUsername', CONST_DIPLOMACY_USER_RATING_*);` | Sets the diplomacy score of a player to friendly, based on one of the CONST_DIPLOMACY_USER_RATING_* constants |
 
 All setters have an equivalent getter.
 
 
-### Instalation
+### Installation
 If you're using grunt-screeps:
 Checkout in your DIST folder. 
 Edit the `src` property the following to your gruntfile.js:
@@ -51,7 +49,6 @@ Adding it to your main script:
 ```javascript
 var diplomacy = require('diplomacy');
 module.exports.loop = function() {
-    // diplomacy.setMemoryLocation('diplomacy'); // Optional
     diplomacy.init(); // Must be called on every iteration you want to use the diplomacy module
 
     var randomHostileCreep = getHostileCreepFromSomeLocation();

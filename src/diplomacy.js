@@ -1,7 +1,5 @@
 require('./diplomacy.globals');
 
-const theMemoryLocation = global.CONST_DIPLOMACY_MEMORY_ROOT;
-
 const diplomacy = {
 
     /**
