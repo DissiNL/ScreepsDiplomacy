@@ -13,7 +13,7 @@ Allows you to implement and act according to the diplomacy rules set by the worl
  - Track hostility of users (ranging from -10 to 10) based on their actions.
 
 
-*This module is \*\*not\*\* designed to do any actions on itself, a user script should always handle diplomacy actions. It's merely a communication tool*
+_This module is **not** designed to do any actions on itself, a user script should always handle diplomacy actions. It's merely a communication tool_
 
 
 ### Version
