@@ -1,0 +1,1 @@
+global.CONST_DIPLOMACY_MEMORY_ROOT = 'diplomacy';
