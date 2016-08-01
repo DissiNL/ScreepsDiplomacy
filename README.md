@@ -16,7 +16,7 @@ Allows you to implement and act according to the diplomacy rules set by the worl
 _This module is **not** designed to do any actions on itself, a user script should always handle diplomacy actions. It's merely a communication tool_
 
 
-### Version
+## Version
 1.0.0
 
 
@@ -27,7 +27,7 @@ This module will create, and manage, the following memory entry:
  - The [Creep](http://support.screeps.com/hc/en-us/articles/203013212-Creep).diplomacy will be added when a creep performed a diplomatic action
 
 
-### Functions
+## Functions
 
 
 | Action | Function | Description|
@@ -64,21 +64,24 @@ module.exports.loop = function() {
 
 ```
 
-### Specifications
+## Specifications
 
-##### Protocol
+### Protocol
 
 The saying [Creep.saying](http://support.screeps.com/hc/en-us/articles/203013212-Creep#saying) value is used for communcations.  
 
-##### Layer 0
+#### Layer 0
 After tests we found out the following bit range to be available for [Creep.saying](http://support.screeps.com/hc/en-us/articles/203013212-Creep#saying)  
-0b0111 1111 1111 1111  
+`0b0111 1111 1111 1111`  
 This means we can send 15 bits per character of creep.say  
-Effectively we get a bandwidth of 150 bits/tick, or 18,75 bytes/tick  
+Effectively we get a bandwidth of *150* bits/tick, or *18,75* bytes/tick  
 The data in this structure is free to use, see [DiplomacyPacket.js](src/DiplomacyPacket.js) for more information
 
 
-##### Code conventions
+
+_____
+
+## Code conventions
 
 The diplomacy scripts requires you to free up the global ***CONST_DIPLOMACY_\**** namesapce. Constants will be published to this list.  
  - Globals are to be defined in the diplomacy.globals.js file
