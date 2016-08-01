@@ -1,4 +1,4 @@
-var DiplomacyPacket = class DiplomacyPacket {
+var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
     /**
      * Creates a new Diplomacy packet based on the specs of https://github.com/ButAds/ScreepsDiplomacy
      */
@@ -67,4 +67,53 @@ var DiplomacyPacket = class DiplomacyPacket {
     }
 };
 
-module.exports.DiplomacyPacket = DiplomacyPacket;
+var IncomingDiplomacyPacket = class IncomingDiplomacyPacket {
+    /**
+     * Creates a new IncomingDiplomacy packet based on the specs of https://github.com/ButAds/ScreepsDiplomacy
+     */
+    constructor (theData) {
+        this.readBytes = 0;
+        this.data = [];
+        if(theData.length) {
+            for(let i = 0 ; i < theData.length; i++)
+            {
+                this.data.push(theData.charCodeAt(i));
+            }
+        }
+    }
+    
+    /**
+     * Reads a number with a certain amount of bits
+     * This will read a certain number of a certain length.
+     * @param {theBitCount} The amount of bits that make up the number
+     * 
+     */
+    readNumber(theBitCount) {
+        let result = 0;
+        for(let bits = 0; bits < theBitCount; bits++) {
+            
+            let bit = this.readBit();
+            if(bit == 0x1) {
+                result |= bit << bits;
+            }
+        }
+        return result;
+    }
+    /**
+     * Reads a single bit from the data packet
+     */
+    readBit() {
+        if(this.readBytes >= (this.data.length * 15) ){
+            throw new Exception("Diplomacy packet empty");
+        }
+        
+        let bitNumber = this.readBytes % 15
+        let byteNumber = Math.floor(this.readBytes / 15);
+        let data = (this.data[byteNumber] >> bitNumber) & 0x1;
+        this.readBytes++;
+        return data;
+    }
+};
+
+module.exports.OutgoingDiplomacyPacket = OutgoingDiplomacyPacket;
+module.exports.IncomingDiplomacyPacket = IncomingDiplomacyPacket;
