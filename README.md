@@ -1,8 +1,5 @@
 # ScreepsDiplomacy
 
-## `Draft, open for discussion`
-
-
 Main diplomacy module shared by all screepers.
 
 Allows you to implement and act according to the diplomacy rules set by the worlds inhabitants.

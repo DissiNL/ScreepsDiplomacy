@@ -1,3 +1,7 @@
+/**
+ * Main communication file used for layer 0 communications. 
+ */
+
 const BITS_PER_CHARACTER = 15;
 var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
     /**

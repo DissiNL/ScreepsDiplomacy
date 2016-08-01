@@ -9,7 +9,9 @@ const diplomacy = {
      *
      */
     init: function () {
-        // TODO init
+        if(!Memory[CONST_DIPLOMACY_MEMORY_ROOT]) {
+            Memory[CONST_DIPLOMACY_MEMORY_ROOT] = {};
+        }
     },
 
     process: function (theCreep) {
@@ -17,20 +19,51 @@ const diplomacy = {
     },
 
     setMaxCpuUsage: function (theUsername, theNewMaximumCpu) {
-
+        var userData = this.getUserDiplomacyObjectFromMemory(theUsername);
+        userData.cpuMax = theNewMaximumCpu;
     },
 
-    getMaxCpuUsage: function (theUsername, theNewMaximumCpu) {
-        return 0;
+    getMaxCpuUsage: function (theUsername) {
+        var userData = this.getUserDiplomacyObjectFromMemory(theUsername);
+        if(!userData.cpuMax) {
+            return userData.cpuMax;
+        }
+        return CONST_DIPLOMACY_USER_DEFAULT_CPU;
     },
 
     setDiplomacyScore: function (theUsername, theNewStatus) {
-        return 0;
+        var userData = this.getUserDiplomacyObjectFromMemory(theUsername);
+        userData.score = theNewStatus;
+    },
+
+    getDiplomacyScore: function (theUsername) {
+        var userData = this.getUserDiplomacyObjectFromMemory(theUsername);
+        var diplomacyState = CONST_DIPLOMACY_USER_DIPLOMACY_STATUS_DEFAULT;
+        if(userData.state) {
+            diplomacyState = userData.state;
+        }
+        for(var state in CONST_DIPLOMACY_USER_DIPLOMACY_STATUS) { // Sorted from hostile to friendly
+            if(diplomacyState < CONST_DIPLOMACY_USER_DIPLOMACY_STATUS[state]) {
+                return state;
+            }   
+        }
+        return CONST_DIPLOMACY_USER_DIPLOMACY_STATUS_FRIENDLY; 
     },
 
     hookFunction: function (theMethod, theFunction, theUsername) {
 
-    }
+    },
+
+    getUserDiplomacyObjectFromMemory: function(theUsername) {
+        if(!Memory[CONST_DIPLOMACY_MEMORY_ROOT].users) {
+            Memory[CONST_DIPLOMACY_MEMORY_ROOT].users = {};
+        }
+        if(!Memory[CONST_DIPLOMACY_MEMORY_ROOT].users[theUsername]) {
+            Memory[CONST_DIPLOMACY_MEMORY_ROOT].users[theUsername] = { };
+        }
+        return Memory[CONST_DIPLOMACY_MEMORY_ROOT].users[theUsername];
+
+    },
 };
 
 // TODO Add global actions register
