@@ -25,7 +25,10 @@ _This module is **not** designed to do any actions on itself, a user script shou
 
 Available at  [Protocol.md](Protocol.md).  
 
-### Modifies following screeps data
+______
+
+
+# Modifies following screeps data
 
 This module will create, and manage, the following memory entry:
  - `Memory.__diplomacy__`  
@@ -42,7 +45,7 @@ This module will create, and manage, the following memory entry:
 All setters have an equivalent getter.
 
 
-### Installation
+## Installation
 If you're using grunt-screeps:
 Checkout in your DIST folder. 
 Edit the `src` property the following to your gruntfile.js:
