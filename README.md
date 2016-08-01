@@ -25,7 +25,10 @@ _This module is **not** designed to do any actions on itself, a user script shou
 
 Available at  [Protocol.md](Protocol.md).  
 
-### Modifies following screeps data
+______
+
+
+# Modifies following screeps data
 
 This module will create, and manage, the following memory entry:
  - `Memory.__diplomacy__`  
