@@ -1,3 +1,4 @@
+const BITS_PER_CHARACTER = 15;
 var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
     /**
      * Creates a new Diplomacy packet based on the specs of https://github.com/ButAds/ScreepsDiplomacy
@@ -48,8 +49,8 @@ var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
             throw new Exception("Diplomacy packet full");
         }
         if(theBit & 0x1 == 0x01) { // JS bits yay
-            let bitNumber = this.dataWritten % 15
-            let byteNumber = Math.floor(this.dataWritten / 15);
+            let bitNumber = this.dataWritten % BITS_PER_CHARACTER;
+            let byteNumber = Math.floor(this.dataWritten / BITS_PER_CHARACTER);
             this.data[byteNumber] |= ((theBit & 0x1) << bitNumber);
         }
         this.dataWritten++;
@@ -103,12 +104,12 @@ var IncomingDiplomacyPacket = class IncomingDiplomacyPacket {
      * Reads a single bit from the data packet
      */
     readBit() {
-        if(this.readBytes >= (this.data.length * 15) ){
+        if(this.readBytes >= (this.data.length * BITS_PER_CHARACTER) ){
             throw new Exception("Diplomacy packet empty");
         }
         
-        let bitNumber = this.readBytes % 15
-        let byteNumber = Math.floor(this.readBytes / 15);
+        let bitNumber = this.readBytes % BITS_PER_CHARACTER;
+        let byteNumber = Math.floor(this.readBytes / BITS_PER_CHARACTER);
         let data = (this.data[byteNumber] >> bitNumber) & 0x1;
         this.readBytes++;
         return data;
