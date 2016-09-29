@@ -3,6 +3,13 @@
  */
 
 const BITS_PER_CHARACTER = 15;
+
+let LOOKUP_BYTEPOS = [];
+for(let i = 0; i < BITS_PER_CHARACTER * 20; i++)
+{
+    LOOKUP_BYTEPOS[i] = Math.floor(i / BITS_PER_CHARACTER);
+}
+
 var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
     /**
      * Creates a new Diplomacy packet based on the specs of https://github.com/ButAds/ScreepsDiplomacy
@@ -68,6 +75,7 @@ var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
         {
             packet += String.fromCodePoint(this.data[data]);
         }
+        console.log('Wrote ' + this.dataWritten + " bits") ;
         return packet;
     }
 };
@@ -77,6 +85,9 @@ var IncomingDiplomacyPacket = class IncomingDiplomacyPacket {
      * Creates a new IncomingDiplomacy packet based on the specs of https://github.com/ButAds/ScreepsDiplomacy
      */
     constructor (theData) {
+        this.setData(theData);
+    }
+    setData(theData) {
         this.readBytes = 0;
         this.data = [];
         if(theData.length) {
@@ -109,11 +120,20 @@ var IncomingDiplomacyPacket = class IncomingDiplomacyPacket {
      */
     readBit() {
         if(this.readBytes >= (this.data.length * BITS_PER_CHARACTER) ){
-            throw new Exception("Diplomacy packet empty");
+            return 0;
         }
         
         let bitNumber = this.readBytes % BITS_PER_CHARACTER;
-        let byteNumber = Math.floor(this.readBytes / BITS_PER_CHARACTER);
+        let byteNumber;
+        if(LOOKUP_BYTEPOS.length > this.readBytes)
+        {
+            byteNumber = LOOKUP_BYTEPOS[this.readBytes];
+        }
+        else
+        {
+            byteNumber = Math.floor(this.readBytes / BITS_PER_CHARACTER);    
+        }
+        
         let data = (this.data[byteNumber] >> bitNumber) & 0x1;
         this.readBytes++;
         return data;
