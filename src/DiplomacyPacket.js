@@ -73,7 +73,14 @@ var OutgoingDiplomacyPacket = class OutgoingDiplomacyPacket {
         let packet = '';
         for(let data = 0; data < this.data.length; data++)
         {
-            packet += String.fromCodePoint(this.data[data]);
+            if (this.data[data] === undefined)
+            {
+                packet += String.fromCodePoint(0);
+            }
+            else
+            {
+                packet += String.fromCodePoint(this.data[data]);
+            }
         }
         console.log('Wrote ' + this.dataWritten + " bits") ;
         return packet;
